@@ -1,0 +1,30 @@
+<!--suppress ALL -->
+<idea-plugin>
+    <id>org.thuddle.codetours</id>
+    <name>CodeTours for IntelliJ</name>
+    <vendor email="blazhen88@gmail.com" url="http://www.github.com/kaiyote/codetours-intellij">Just Me™</vendor>
+
+    <description><![CDATA[
+        Do CodeTours in IntelliJ
+        ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup displayType="STICKY_BALLOON" id="CodeTours Notification"/>
+        <backgroundPostStartupActivity implementation="org.thuddle.codetours.ProjectTourScanner"/>
+        <applicationService
+                serviceInterface="org.thuddle.codetours.SeenToursStateComponent"
+                serviceImplementation="org.thuddle.codetours.SeenToursStateComponent"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="org.thuddle.codetours.actions.RunToursAction" class="org.thuddle.codetours.actions.RunToursAction"
+                text="Run A Tour" description="Select a CodeTour to run, and let the IDE walk you through it">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
